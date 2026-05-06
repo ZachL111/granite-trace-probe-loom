@@ -1,0 +1,73 @@
+{
+  "repo": "granite-trace-probe-loom",
+  "language": "Scala",
+  "category": "Observability",
+  "goal": "Package a Scala local lab for probe analysis with capacity fixtures, allocation and spill reports, and documented operating limits.",
+  "review_model": {
+    "terms": [
+      "span volume",
+      "latency skew",
+      "signal loss",
+      "incident shape"
+    ],
+    "lanes": [
+      "ship",
+      "watch",
+      "hold"
+    ],
+    "score": "signal * 2 + slack + confidence - drag * 3",
+    "purpose": "surface the domain-specific cases that need the most careful review"
+  },
+  "cases": [
+    {
+      "name": "baseline",
+      "focus": "span volume",
+      "signal": 55,
+      "slack": 44,
+      "drag": 17,
+      "confidence": 51,
+      "score": 154,
+      "lane": "ship"
+    },
+    {
+      "name": "stress",
+      "focus": "latency skew",
+      "signal": 55,
+      "slack": 43,
+      "drag": 21,
+      "confidence": 46,
+      "score": 136,
+      "lane": "watch"
+    },
+    {
+      "name": "edge",
+      "focus": "signal loss",
+      "signal": 73,
+      "slack": 30,
+      "drag": 8,
+      "confidence": 45,
+      "score": 197,
+      "lane": "ship"
+    },
+    {
+      "name": "recovery",
+      "focus": "incident shape",
+      "signal": 52,
+      "slack": 31,
+      "drag": 9,
+      "confidence": 57,
+      "score": 165,
+      "lane": "ship"
+    },
+    {
+      "name": "stale",
+      "focus": "span volume",
+      "signal": 52,
+      "slack": 31,
+      "drag": 21,
+      "confidence": 48,
+      "score": 120,
+      "lane": "watch"
+    }
+  ]
+}
