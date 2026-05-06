@@ -63,3 +63,9 @@ scalac -d build/classes src/Policy.scala src/DomainReview.scala tests/Test.scala
 scala -cp build/classes TestRunner
 
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts/check-granite-trace-probe-detail.ps1
+
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/check-granite-trace-probe-properties.ps1
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/check-granite-trace-probe-golden.ps1
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
